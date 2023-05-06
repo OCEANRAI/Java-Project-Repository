@@ -1,103 +1,44 @@
-//public class MyProject {
-//  public static void main(String[] args) {
-//    System.out.println("Hello World");
-//}
-//}
-/*public class Main {
-    public static void main(String[] args){
-
-        System.out.println("Hello, my name is ocean, and I am learning java programming language");
-        System.out.println("I am so glad to learn java programming language");
-        System.out.println("Nice to meet you all");
-        System.out.print("this is print method without ln in the end. ");
-        System.out.print("this is also print method without ln in the end");
-    }
-}*/
-
-// This block of code is just for practice purposes only.
-// It is basically printing numbers, adding up and multipling it.
-/*public class Main {
-    public static void main(String[] args) {
-        System.out.println(255);
-        System.out.println(200);
-        System.out.println(500);
-        System.out.println(600);
-        System.out.println(7 * 7);
-        System.out.println(49 * 49);
-        System.out.println(25 + 49);
-
-    }
-}*/
-
-//Java Variables 
-/*public class Main {
-    public static void main(String[] args) {
-
-        String userName = "Ocean";
-        System.out.println(userName);
-        int myNum = 25;
-        myNum = 40;
-        //final int myNum = 50;
-        System.out.println(myNum);
-
-        
-    }
-}*/
-
-/*public class Main {
-    public static void main(String[] args) {
-        String firstName = "Ocean";
-        String lastName = "Rai";
-        String fullName = firstName + lastName;
-        System.out.println(fullName);
-
-        // int x = 25;
-        // int y = 45;
-        // System.out.println(x + y);
-
-        // declaring many variables
-        // instead of writing this
-        // int a = 5;
-        // int b = 8;
-        // int c = 20;
-        // System.out.println(a + b - c);
-
-        // simply write
-        // int a = 5, b = 8, c = 20;
-        // System.out.println(a + b - c);
-
-        // one value to multiple variables
-        //int x, y, z;
-        //x = y = z = 20;
-        //System.out.println(x + y + z);
-
-    }
-
-}*/
-
-// Java Identifiers
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int minutesPerHour = 60;
-        System.out.println(minutesPerHour);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Your date of birth (Year/Month/Day) order: ");
 
-        byte myNum = 100;
-        System.out.println(myNum);
+        String dobStr = scanner.nextLine();
+        String[] dateArr = dobStr.split("/");
 
-        short myNums = 5000;
-        System.out.println(myNums);
+        if (dateArr.length != 3) {
+            System.out.println("Invalid date format!");
+            scanner.close();
+            return;
+        }
 
-        long mynumbs = 150000000000L;
-        System.out.println(mynumbs);
+        int year = Integer.parseInt(dateArr[0]);
+        int month = Integer.parseInt(dateArr[1]);
+        int day = Integer.parseInt(dateArr[2]);
 
-        float mynumb = 5.75f;
-        System.out.println(mynumb);
+        if (month < 1 || month > 12) {
+            System.out.println("Invalid month!");
+            scanner.close();
+            return;
+        }
 
-        double mynumber = 19.99d;
-        System.out.println(mynumber);
+        if (day < 1 || day > 31) {
+            System.out.println("Invalid day!");
+            scanner.close();
+            return;
+        }
 
+        LocalDate dob = LocalDate.of(year, month, day);
+        Period agePeriod = Period.between(dob, LocalDate.now());
 
+        int age = agePeriod.getYears();
+
+        System.out.println("You are " + age);
+
+        scanner.close();
     }
-
 }
